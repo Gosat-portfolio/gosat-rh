@@ -405,215 +405,9 @@ body {
 <script>
 function v(id){ return document.getElementById(id).value.trim(); }
 
-/* ─────────────────────────────────────────────
-   BUILD EMAIL — table-based, fully inline styles
-   Compatible with Outlook 2016/2019/365 + Web
-───────────────────────────────────────────────*/
-function buildEmailHTML(nome, cargo, inicio, horario, dexame, hexini, hexfim, prazo) {
-
-  var ROXO   = '#74108F';
-  var ROXO2  = '#8a3c90';
-  var AZUL   = '#29AEC6';
-  var AMARELO= '#e99f2e';
-  var CINZA  = '#58627c';
-  var BGDOC  = '#f8f2ff';
-  var WHITE  = '#ffffff';
-  var FONT   = "font-family:Montserrat,Arial,sans-serif;";
-
-  return ''+
-  '<table width="600" cellpadding="0" cellspacing="0" border="0" style="'+FONT+'background:#ffffff;margin:0 auto;width:600px;">'+
-
-  /* ── HEADER IMAGE ── */
-  '<tr><td style="padding:0;line-height:0;">'+
-    '<img src="https://gosat.org/wp-content/uploads/2026/03/boas-vindas-header.png" width="600" alt="GOSAT Boas-vindas" style="display:block;width:600px;max-width:600px;">'+
-  '</td></tr>'+
-
-  /* ── BOAS VINDAS ── */
-  '<tr><td style="background:'+WHITE+';padding:32px 30px 24px;text-align:center;">'+
-    '<p style="'+FONT+'font-size:22px;font-weight:700;color:'+CINZA+';margin:0 0 8px;">OL&Aacute;, <span style="color:'+ROXO2+';">'+nome.toUpperCase()+'</span>!</p>'+
-    '<p style="'+FONT+'font-size:16px;font-weight:400;font-style:italic;color:'+ROXO2+';margin:0;">Parab&eacute;ns! Voc&ecirc; foi aprovado(a) em nosso processo seletivo!!</p>'+
-  '</td></tr>'+
-
-  /* ── AVISO ── */
-  '<tr><td style="background:'+WHITE+';padding:0 30px 20px;">'+
-    '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fffbf0;border-left:4px solid '+AMARELO+';border-radius:6px;">'+
-      '<tr>'+
-        '<td width="40" style="padding:14px 10px 14px 16px;font-size:22px;vertical-align:middle;">&#9888;&#65039;</td>'+
-        '<td style="'+FONT+'padding:14px 16px 14px 6px;font-size:12px;color:'+AMARELO+';font-weight:600;line-height:1.6;">'+
-          'Por favor, leia todo o e-mail at&eacute; ao fim.<br>'+
-          '*Clique em &ldquo;Autorizar conte&uacute;do remoto&rdquo; para liberar as imagens.'+
-        '</td>'+
-      '</tr>'+
-    '</table>'+
-  '</td></tr>'+
-
-  /* ── DIVIDER ── */
-  '<tr><td style="padding:0 30px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #eee;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>'+
-
-  /* ── INTRO ── */
-  '<tr><td style="background:'+WHITE+';padding:24px 30px;text-align:center;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0;">'+
-      'A data para o in&iacute;cio das atividades est&aacute; prevista para <strong>'+inicio+'</strong>, &agrave;s <strong>'+horario+'hs</strong>. Qualquer altera&ccedil;&atilde;o, informaremos.<br><br>'+
-      'Para agilizarmos sua admiss&atilde;o, segue abaixo os documentos que dever&atilde;o ser anexados em nosso sistema, o <strong style="color:'+ROXO2+';">Convenia</strong>! Fique tranquilo, que daqui a pouquinho enviaremos por e-mail o link para que voc&ecirc; possa anex&aacute;-los.<br><br>'+
-      '<strong>Mas se liga, s&oacute; pode ser no <span style="color:'+ROXO2+';">formato PDF</span>, ok?!</strong>'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── DOCUMENTOS HEADER ── */
-  '<tr><td style="background:'+ROXO+';padding:14px 20px;text-align:center;">'+
-    '<p style="'+FONT+'font-size:13px;font-weight:700;color:'+WHITE+';margin:0;letter-spacing:0.5px;">DOCUMENTOS NECESS&Aacute;RIOS PARA ADMISS&Atilde;O</p>'+
-  '</td></tr>'+
-
-  /* ── DOCUMENTOS BODY ── */
-  '<tr><td style="background:'+BGDOC+';padding:22px 30px;text-align:center;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';font-weight:700;margin:0 0 14px;">Gentileza providenciar c&oacute;pia leg&iacute;vel dos seguintes documentos:</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+ROXO2+';font-weight:600;line-height:2.2;margin:0;">'+
-      '&#10004;&#65039; 2 Fotos &frac34; recente &nbsp;&nbsp; &#10004;&#65039; Carteira de Trabalho &ndash; Original e c&oacute;pia<br>'+
-      '&#10004;&#65039; PIS/PASEP &nbsp;&nbsp; &#10004;&#65039; T&iacute;tulo de Eleitor &nbsp;&nbsp; &#10004;&#65039; RG &nbsp;&nbsp; &#10004;&#65039; CPF<br>'+
-      '&#10004;&#65039; Comprovante de Endere&ccedil;o recente &nbsp;&nbsp; &#10004;&#65039; Comprovante de Escolaridade<br>'+
-      '&#10004;&#65039; Certid&atilde;o de Nascimento / Casamento / Uni&atilde;o Est&aacute;vel'+
-    '</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';font-weight:700;margin:18px 0 10px;">Se tiver filhos, trazer:</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+ROXO2+';font-weight:600;line-height:2.2;margin:0;">'+
-      '&#10004;&#65039; RG Filhos &nbsp;&nbsp; &#10004;&#65039; CPF Filhos &nbsp;&nbsp; &#10004;&#65039; Certid&atilde;o de Nascimento Filhos'+
-    '</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';font-weight:700;margin:18px 0 10px;">SE A VAGA FOR PARA ESTAGI&Aacute;RIO, PROVIDENCIAR:</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+ROXO2+';font-weight:600;line-height:2.2;margin:0;">'+
-      '&#10004;&#65039; 1 Foto &frac34; recente &nbsp;&nbsp; &#10004;&#65039; Comprovante de Endere&ccedil;o atual &nbsp;&nbsp; &#10004;&#65039; CPF &nbsp;&nbsp; &#10004;&#65039; RG<br>'+
-      '&#10004;&#65039; Comprovante de Escolaridade &nbsp;&nbsp; &#10004;&#65039; Termo de Est&aacute;gio com a Faculdade<br>'+
-      '&#10004;&#65039; Certid&atilde;o de Nascimento / Casamento / Uni&atilde;o Est&aacute;vel'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── EXAME ADMISSIONAL ── */
-  '<tr><td style="background:'+WHITE+';padding:24px 30px;">'+
-    '<table width="100%" cellpadding="0" cellspacing="0" border="0">'+
-      '<tr>'+
-        '<td width="56" style="vertical-align:top;padding-right:16px;font-size:46px;line-height:1;">&#129658;</td>'+
-        '<td style="vertical-align:top;">'+
-          '<p style="'+FONT+'font-size:15px;font-weight:700;font-style:italic;color:'+ROXO2+';margin:0 0 12px;">Exame Admissional:</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.8;margin:0 0 12px;">'+
-            'Seu ASO (Atestado de Sa&uacute;de Ocupacional) Admissional dever&aacute; ser realizado no dia '+
-            '<strong style="color:'+ROXO2+';font-style:italic;">'+dexame+'</strong>, das '+
-            '<strong style="color:'+ROXO2+';font-style:italic;">'+hexini+'hs &agrave;s '+hexfim+'hs</strong>, '+
-            'atendimento por ordem de chegada, na cl&iacute;nica <strong style="color:'+ROXO2+';font-style:italic;">FISIOERGO</strong>, '+
-            'localizada na <strong style="color:'+ROXO2+';font-style:italic;">Rua da Bahia, 1352 &ndash; Lourdes, Belo Horizonte &ndash; MG</strong>. '+
-            'Contato: <strong style="color:'+ROXO2+';font-style:italic;">(31) 3058-1218</strong>.'+
-          '</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.8;margin:0 0 10px;"><em><strong>No papel que te entregarem l&aacute;, &eacute; importante voc&ecirc; conferir se:</strong></em></p>'+
-          '<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">'+
-            '<tr><td style="'+FONT+'font-size:13px;color:'+CINZA+';padding:3px 0;line-height:1.6;"><span style="color:'+ROXO2+';">&#9673;</span> O nome da empresa est&aacute; correto: <strong style="color:'+ROXO2+';font-style:italic;">GOSAT AVGO TECH LTDA</strong></td></tr>'+
-            '<tr><td style="'+FONT+'font-size:13px;color:'+CINZA+';padding:3px 0;line-height:1.6;"><span style="color:'+ROXO2+';">&#9673;</span> Se o seu nome e seus dados est&atilde;o corretos</td></tr>'+
-            '<tr><td style="'+FONT+'font-size:13px;color:'+CINZA+';padding:3px 0;line-height:1.6;"><span style="color:'+ROXO2+';">&#9673;</span> Sua fun&ccedil;&atilde;o est&aacute; como: <strong style="color:'+ROXO2+';font-style:italic;">'+cargo+'</strong></td></tr>'+
-            '<tr><td style="'+FONT+'font-size:13px;color:'+CINZA+';padding:3px 0;line-height:1.6;"><span style="color:'+ROXO2+';">&#9673;</span> E se ser&atilde;o realizados os exames: <strong style="color:'+ROXO2+';font-style:italic;">( X ) CL&Iacute;NICO &nbsp;&nbsp; (&nbsp;) AUDIOMETRIA</strong></td></tr>'+
-          '</table>'+
-          '<p style="'+FONT+'font-size:13px;color:'+ROXO2+';font-weight:700;font-style:italic;margin:12px 0 0;">*ATEN&Ccedil;&Atilde;O: N&atilde;o &eacute; necess&aacute;rio realizar qualquer tipo de pagamento na cl&iacute;nica.</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';font-style:italic;margin:8px 0 0;">**Lembre-se que uma via do exame &eacute; sua e a outra, voc&ecirc; dever&aacute; entregar na empresa.</p>'+
-        '</td>'+
-      '</tr>'+
-    '</table>'+
-  '</td></tr>'+
-
-  /* ── BLOCO AZUL URGENTE ── */
-  '<tr><td style="background:'+AZUL+';padding:22px 30px;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+WHITE+';line-height:1.9;margin:0;">'+
-      '<strong style="color:#fff176;font-style:italic;">E SE LIGA NA PARADA, QUE &Eacute; MUITO IMPORTANTE:</strong><br><br>'+
-      'Assim que acabar de fazer seu exame na cl&iacute;nica, <strong>d&aacute; um corre aqui na Gosat</strong> para trazer pessoalmente as fotos &frac34;, a CTPS, as c&oacute;pias impressas de todos os documentos solicitados e qualquer documenta&ccedil;&atilde;o necess&aacute;ria para sua admiss&atilde;o que ainda estiver pendente no sistema Convenia, belezinha?!'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── DIGITAL ── */
-  '<tr><td style="background:'+WHITE+';padding:24px 30px;">'+
-    '<p style="'+FONT+'font-size:15px;font-weight:700;font-style:italic;color:'+ROXO2+';margin:0 0 12px;">O PAPO AQUI &Eacute; DIGITAL:</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 12px;">'+
-      'Bora adiantar e j&aacute; baixar o app do <strong style="color:#ff7900;">Banco Inter</strong> (onde cai o Dindin), '+
-      '<strong style="color:#e70237;">Caju Benef&iacute;cios</strong> (onde cai o Rango) e '+
-      '<strong style="color:#28a7e7;">Telegram</strong> (onde a gente troca ideia)?!'+
-    '</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 6px;">Os links abaixo v&atilde;o te ajudar caso tenha d&uacute;vidas, ok?!</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:2;margin:0;">'+
-      '<span style="color:'+ROXO2+';">&#9673;</span> <strong style="color:#ff7900;">Inter</strong> &ndash; <a href="https://youtube.com/shorts/4Y60-dSDnbU" style="color:'+ROXO2+';">https://youtube.com/shorts/4Y60-dSDnbU</a><br>'+
-      '<span style="color:#e70237;">&#9673;</span> <strong style="color:#e70237;">Caju</strong> &ndash; <a href="https://youtu.be/Bg6CvRhktmk" style="color:'+ROXO2+';">https://youtu.be/Bg6CvRhktmk</a>'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── DIVIDER ── */
-  '<tr><td style="padding:0 30px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #eee;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>'+
-
-  /* ── TRANSPORTE ── */
-  '<tr><td style="background:'+WHITE+';padding:20px 30px;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0;">'+
-      '<span style="color:'+ROXO2+';">&#9673;</span> Sobre como voc&ecirc; vir&aacute; para o trabalho e voltar&aacute; para sua casa, precisamos que j&aacute; nos informes qual ser&aacute; o meio de transporte desejado &mdash; <strong>Vale Transporte</strong> ou <strong>Vale Combust&iacute;vel</strong> (carro ou moto) &mdash; para providenciarmos os devidos cart&otilde;es de benef&iacute;cio. Ah, se vier de &ocirc;nibus, informe quais as linhas, a quantidade di&aacute;ria da condu&ccedil;&atilde;o e o valor das passagens di&aacute;rias, ok?!'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── PRAZO ── */
-  '<tr><td style="background:'+AZUL+';padding:18px 30px;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+WHITE+';line-height:1.9;margin:0;">'+
-      '<span style="color:#fff176;">&#9673;</span> Fique super atento ao prazo para anexar a documenta&ccedil;&atilde;o em nosso sistema TANGERINO e responder esse e-mail informando sobre o meio de condu&ccedil;&atilde;o escolhido para deslocamento, at&eacute; o dia <strong style="color:#fff176;font-style:italic;">'+prazo+'</strong>.'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── DICAS ── */
-  '<tr><td style="background:'+WHITE+';padding:20px 30px;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 16px;">'+
-      '<span style="color:'+ROXO2+';">&#9673;</span> Na aba de anexar documentos no Sistema Convenia, adicione todos os documentos solicitados aqui. Documentos que n&atilde;o tiverem um espa&ccedil;o pr&oacute;prio devem ser inclu&iacute;dos na op&ccedil;&atilde;o <strong>OUTROS DOCUMENTOS</strong>, t&aacute; bom?!'+
-    '</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 16px;">'+
-      '<span style="color:'+ROXO2+';">&#9673;</span> Aqui gostamos muito de nos manter hidratados e tomar bastante caf&eacute;! Ent&atilde;o, traga aquela sua caneca ou copo bem legal, pra n&atilde;o ficar de fora da pausa pro caf&eacute; na copa!'+
-    '</p>'+
-    '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0;">'+
-      '<span style="color:'+ROXO2+';">&#9673;</span> E se tiver d&uacute;vidas, ligue no <strong style="color:'+ROXO2+';">3003-1112</strong> ou entre em contato pelo e-mail: <a href="mailto:rh@gosat.org" style="color:'+ROXO2+';">rh@gosat.org</a>.'+
-    '</p>'+
-  '</td></tr>'+
-
-  /* ── DIVIDER ── */
-  '<tr><td style="padding:0 30px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #eee;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>'+
-
-  /* ── ENCERRAMENTO ── */
-  '<tr><td style="background:'+WHITE+';padding:24px 30px;">'+
-    '<table width="100%" cellpadding="0" cellspacing="0" border="0">'+
-      '<tr>'+
-        '<td width="64" style="vertical-align:top;padding-right:18px;font-size:50px;line-height:1;">&#128640;</td>'+
-        '<td style="vertical-align:top;">'+
-          '<p style="'+FONT+'font-size:15px;font-weight:700;font-style:italic;color:'+ROXO2+';margin:0 0 14px;">MAIS IMPORTANTE AINDA:</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 12px;">Estamos muito felizes em poder t&ecirc;-lo(a) como parte da nossa equipe!</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 12px;">Desejamos que se sinta bem aqui com a gente e que seja uma pessoa participativa, ousada, que se jogue e n&atilde;o tenha medo de desafios!!!</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 12px;">Proponha boas ideias, saiba ouvir, busque conhecimento e aproveite todas as oportunidades para aprender e crescer com a gente!!</p>'+
-          '<p style="'+FONT+'font-size:13px;color:'+CINZA+';line-height:1.9;margin:0 0 12px;">Aqui, tem uma equipe bem humorada e talentosa te aguardando!</p>'+
-          '<p style="'+FONT+'font-size:16px;font-weight:700;font-style:italic;color:'+ROXO2+';margin:14px 0 0;">#sejaphodacomagente!!!</p>'+
-        '</td>'+
-      '</tr>'+
-    '</table>'+
-  '</td></tr>'+
-
-  /* ── CONFIRMAÇÃO ── */
-  '<tr><td style="background:'+BGDOC+';padding:14px 30px;text-align:center;">'+
-    '<p style="'+FONT+'font-size:13px;color:'+ROXO2+';margin:0;"><strong>Obs:</strong> Gentileza confirmar o recebimento deste.</p>'+
-  '</td></tr>'+
-
-  /* ── FOOTER ── */
-  '<tr>'+
-    '<td style="background:'+ROXO+';padding:24px 30px;background-image:url(https://gosat.org/wp-content/uploads/2026/03/footer.png);background-size:cover;background-position:center;">'+
-      '<table cellpadding="0" cellspacing="0" border="0">'+
-        '<tr>'+
-          '<td style="padding-right:20px;vertical-align:middle;">'+
-            '<img src="https://gosat.org/wp-content/uploads/2026/03/go-icon-2.png" width="58" alt="GOSAT" style="display:block;width:58px;">'+
-          '</td>'+
-          '<td style="'+FONT+'font-size:11px;color:'+WHITE+';line-height:1.9;vertical-align:middle;">'+
-            'Av. &Aacute;lvares Cabral, 1.777, 20&ordm; andar, Santo Agostinho,<br>'+
-            'Belo Horizonte &ndash; MG &nbsp;|&nbsp; CEP: 30.170-008'+
-          '</td>'+
-        '</tr>'+
-      '</table>'+
-    '</td>'+
-  '</tr>'+
-
-  '</table>';
-}
-
 /* ─── GERAR ─── */
 var emailHTMLCache = '';
+var emailTemplateCache = null;
 
 function gerarEmail() {
   var nome    = v('f-nome')    || '[NOME]';
@@ -625,13 +419,44 @@ function gerarEmail() {
   var hexfim  = v('f-hexfim')  || '[HH:MM]';
   var prazo   = v('f-prazo')   || '[DD/MM/AAAA]';
 
-  emailHTMLCache = buildEmailHTML(nome, cargo, inicio, horario, dexame, hexini, hexfim, prazo);
+  function aplicarTemplate(template) {
+    var html = template
+      .replace(/\{\{NOME\}\}/g, nome)
+      .replace(/\{\{CARGO\}\}/g, cargo)
+      .replace(/\{\{DATA_INICIO\}\}/g, inicio)
+      .replace(/\{\{HORARIO\}\}/g, horario)
+      .replace(/\{\{DATA_EXAME\}\}/g, dexame)
+      .replace(/\{\{HORARIO_EXAME_INI\}\}/g, hexini)
+      .replace(/\{\{HORARIO_EXAME_FIM\}\}/g, hexfim)
+      .replace(/\{\{PRAZO\}\}/g, prazo);
 
-  document.getElementById('email-render').innerHTML = emailHTMLCache;
-  document.getElementById('empty-state').style.display = 'none';
-  document.getElementById('email-preview-wrap').classList.add('show');
-  document.getElementById('copy-block').classList.add('show');
-  hideToast();
+    // Extrai apenas o conteúdo do <body>
+    var match = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+    emailHTMLCache = match ? match[1] : html;
+
+    document.getElementById('email-render').innerHTML = emailHTMLCache;
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('email-preview-wrap').classList.add('show');
+    document.getElementById('copy-block').classList.add('show');
+    hideToast();
+  }
+
+  if (emailTemplateCache) {
+    aplicarTemplate(emailTemplateCache);
+  } else {
+    fetch('email.html.html')
+      .then(function(resp) {
+        if (!resp.ok) throw new Error('Erro ao carregar template');
+        return resp.text();
+      })
+      .then(function(template) {
+        emailTemplateCache = template;
+        aplicarTemplate(template);
+      })
+      .catch(function(err) {
+        showToast('Erro ao carregar o template do e-mail: ' + err.message, 'error');
+      });
+  }
 }
 
 /* ─── COPIAR RICH TEXT PARA CLIPBOARD ─── */

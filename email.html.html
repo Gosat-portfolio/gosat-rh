@@ -249,7 +249,7 @@
 
   <!-- BOAS-VINDAS -->
   <div class="boas-vindas">
-    <h1>OLÁ, <strong style="color:#8a3c90;"><!-- NOME DO CANDIDATO -->[NOME]</strong>!</h1>
+    <h1>OLÁ, <strong style="color:#8a3c90;">{{NOME}}</strong>!</h1>
     <h2>Parabéns! Você foi aprovado(a) em nosso processo seletivo!!</h2>
   </div>
 
@@ -265,8 +265,8 @@
   <!-- INTRO -->
   <div class="intro">
     A data para o início das atividades está prevista para
-    <strong><!-- DATA DE INÍCIO -->[DD/MM/AAAA]</strong>, às
-    <strong><!-- HORÁRIO -->[HH:MM]hs</strong>.
+    <strong>{{DATA_INICIO}}</strong>, às
+    <strong>{{HORARIO}}hs</strong>.
     Qualquer alteração, informaremos.<br><br>
     Para agilizarmos sua admissão, segue abaixo os documentos que deverão ser anexados em nosso sistema, o <strong>Tangerino</strong>!
     Fique tranquilo, que daqui a pouquinho enviaremos por e-mail o link para que você possa anexá-los.<br><br>
@@ -329,8 +329,8 @@
         <h3>Exame Admissional:</h3>
         <p>
           Seu ASO (Atestado de Saúde Ocupacional) Admissional deverá ser realizado no dia
-          <span class="destaque"><!-- DATA DO EXAME -->[DD/MM/AAAA]</span>,
-          das <span class="destaque"><!-- HORÁRIO -->[HH:MM]hs às [HH:MM]hs</span>,
+          <span class="destaque">{{DATA_EXAME}}</span>,
+          das <span class="destaque">{{HORARIO_EXAME_INI}}hs às {{HORARIO_EXAME_FIM}}hs</span>,
           atendimento por ordem de chegada, na clínica
           <span class="destaque">FISIOERGO</span>, localizada na
           <span class="destaque">Rua da Bahia, 1352 – Lourdes, Belo Horizonte – MG</span>.
@@ -340,7 +340,7 @@
         <ul>
           <li>O nome da empresa está correto: <span class="destaque">GOSAT AVGO TECH LTDA</span></li>
           <li>Se o seu nome e seus dados estão corretos</li>
-          <li>Sua função está como: <span class="destaque"><!-- CARGO -->[CARGO DO CANDIDATO]</span></li>
+          <li>Sua função está como: <span class="destaque">{{CARGO}}</span></li>
           <li>E se serão realizados os exames: <span class="destaque">( X ) CLÍNICO &nbsp;&nbsp; (&nbsp; ) AUDIOMETRIA</span></li>
         </ul>
         <p class="atencao" style="margin-top:16px;">*ATENÇÃO: Não é necessário realizar qualquer tipo de pagamento na clínica.</p>
@@ -399,7 +399,7 @@
     <p>
       <span style="color:#8a3c90;">◉</span>
       Fique super atento ao prazo para anexar a documentação em nosso sistema TANGERINO e responder esse e-mail informando sobre o meio de condução escolhido para deslocamento, até o dia
-      <span class="data"><!-- PRAZO -->[DD/MM/AAAA]</span>.
+      <span class="data">{{PRAZO}}</span>.
     </p>
   </div>
 
